@@ -1,0 +1,152 @@
+<div class="card container m-3 py-3">
+
+  <section name="cardinfo-top">
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Name On Card
+        </strong>
+      </div>
+      <div class="col">
+        {{card.AccountName}}
+      </div>
+    </div>
+  </section>
+
+  <section name="cardinfo-billing">
+    <div class="row my-1">
+      <div class="col-3">
+        <strong>
+          Billing Information
+        </strong>
+      </div>
+      <div class="card col bg-light mx-3">
+        {% for key, val in card.BillingInformation.items %}
+          <div class="row">
+            <div class="col-4">
+              <strong>
+                {{key}}
+              </strong>
+            </div>
+            <div class="col">
+              {{val}}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section name="cardinfo-bottom">
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Payment Method ID
+        </strong>
+      </div>
+      <div class="col">
+        {{card.PaymentMethodID}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Description
+        </strong>
+      </div>
+      <div class="col">
+        {{card.Description}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Card Number
+        </strong>
+      </div>
+      <div class="col">
+        {{card.ObfuscatedAccountNumber}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Expiration
+        </strong>
+      </div>
+      <div class="col">
+        {% if card.ExpirationDate %}
+        {{card.ExpirationDate}} (MMYY)
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Card Type
+        </strong>
+      </div>
+      <div class="col">
+        {{card.PaymentMethodType}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Priority
+        </strong>
+      </div>
+      <div class="col">
+        {{card.Priority}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Protected
+        </strong>
+      </div>
+      <div class="col">
+        {{card.Protected}}
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section name="card-actions">
+    <div class="row">
+      <div class="col-6"></div>
+      <div class="col text-center">
+        <h5>Card Actions</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2 ml-auto text-center">
+        <a class="btn btn-outline-success btn-sm w-100"
+        href="{% url 'propayui-cardverify' cardid=card.PaymentMethodID %}">
+          Validate Card
+        </a>
+      </div>
+      <div class="col-2">
+        <a class="btn btn-sm btn-outline-primary w-100"
+        href="{% url 'propayui-cardedit' cardid=card.PaymentMethodID %}">
+          Update Billing
+        </a>
+      </div>
+      <div class="col-2">
+        <a class="btn btn-sm btn-outline-danger w-100"
+        href="{% url 'propayui-carddelete' cardid=card.PaymentMethodID %}">
+          Delete Card
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>

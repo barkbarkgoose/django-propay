@@ -1,0 +1,35 @@
+{% extends 'propay_ui/base.html' %}
+{% block title %}
+Propay UI
+{% endblock %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container py-5">
+  <p class="display-3 text-center">
+    Propay UI
+  </p>
+</div>
+<div class="container mt-5 py-5 text-center">
+  <div class="row">
+    <div class="col">
+      <a href="{% url 'propayui-payersearch' %}" class="btn btn-success w-75">
+        Search For Payer
+      </a>
+    </div>
+    <div class="col">
+      <a href="{% url 'propayui-payercreate' %}" class="btn btn-info w-75">
+        Create Payer
+      </a>
+    </div>
+    <div class="col">
+      <a href="{% url 'propayui-transsearch' %}" class="btn btn-warning w-75">
+        Transaction Search
+      </a>
+    </div>
+  </div>
+
+</div>
+
+{% endblock content %}

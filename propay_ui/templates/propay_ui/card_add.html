@@ -1,0 +1,121 @@
+{% extends 'propay_ui/base.html' %}
+{% block title %}
+Create New Payer
+{% endblock %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-3">
+      <a href="{% url 'propayui-payerdetails' %}" class="btn btn-secondary">
+        back
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <section name="pagetitle">
+    <div class="row">
+      {% if cardid %}
+      <p class="display-3 text-center w-100">
+        Edit Card Info
+      </p>
+      {% else %}
+      <p class="display-3 text-center w-100">
+        Add Card to Payer
+      </p>
+      {% endif %}
+    </div>
+  </section>
+</div>
+
+<div class="container" id="payer-details">
+  <section name="payerdetails">
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Name
+        </strong>
+      </div>
+      <div class="col">
+        {{payer.name}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          ExternalID1
+        </strong>
+      </div>
+      <div class="col">
+        {{payer.eid1}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          ExternalID2
+        </strong>
+      </div>
+      <div class="col">
+        {{payer.eid2}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Propay Payer ID:
+        </strong>
+      </div>
+      <div class="col">
+        {{payer.pid}}
+      </div>
+    </div>
+  </section>
+
+  {% if message %}
+  <section id="api-message">
+    <h4 class="mt-3 text-danger">
+      Error Response From Propay
+    </h4>
+    {% for key, value in message.RequestResult.items %}
+    <p class="text-danger">
+      {{key}}: {{value}}
+    </p>
+    {% endfor %}
+  </section>
+  {% endif %}
+</div>
+
+<div class="card container my-5 p-5">
+  <section name="payerform">
+    {% if cardid %}
+    <form action="{% url 'propayui-cardedit' cardid=cardid %}" method="POST" autocomplete="off">
+    {% else %}
+    <form action="{% url 'propayui-cardadd' %}" method="POST" autocomplete="off">
+    {% endif %}
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button id="" class="btn btn-info" type="submit">
+        submit
+      </button>
+    </form>
+  </section>
+</div>
+
+<div class="container">
+  <hr>
+</div>
+
+<div class="container">
+  <div class="row text-center">
+    <h3>Data</h3>
+  </div>
+  <div class="row">
+    {{data}}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'propay_ui/base.html' %}
+{% block title %}
+Propay Transaction Search Page
+{% endblock %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-3">
+      <a href="{% url 'propayui-index' %}" class="btn btn-secondary">
+        home
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <p class="display-3 text-center w-100">
+      Hosted Transaction Search
+    </p>
+  </div>
+  <div class="row">
+    <p class="display-5 w-100">
+      Note that a HostedTransactionId is different from a regular TransactionHistoryId
+      or OriginalTransactionId.  The latter two are what are used in verifying an
+      already saved card whereas the HostedTransactionId is what is returned from
+      the external page hosted directly by Propay.
+    </p>
+  </div>
+</div>
+
+<div class="card container my-5 p-5">
+  <form id="ppayidlookup" method="GET" autocomplete="false">
+    {{ form|crispy }}
+    <button id="" class="btn btn-info" type="submit">
+      look up transaction
+    </button>
+  </form>
+</div>
+
+<div id="results-section" class="container p-5">
+  <h3>Lookup Results</h3>
+  <section id="look-account">
+    {% if not message %}
+    {{search_results}}
+
+    {% else %}
+    {{message}}
+    {% endif %}
+  </section>
+</div>
+
+
+
+{% endblock content %}

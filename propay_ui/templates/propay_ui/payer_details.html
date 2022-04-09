@@ -1,0 +1,107 @@
+{% extends 'propay_ui/base.html' %}
+{% block title %}
+Payer Details: {{payerid}}
+{% endblock %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container pt-3">
+  <div class="row">
+    <div class="col">
+      <a href="{% url 'propayui-payersearch' %}" class="btn btn-secondary">
+        back to payer search
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="payer-details">
+  <section name="pagetitle">
+    <div class="row">
+      <p class="display-3 text-center w-100">
+        Payer Details
+      </p>
+    </div>
+  </section>
+
+  <section name="payerdetails">
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Name
+        </strong>
+      </div>
+      <div class="col">
+        {{payer.name}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          ExternalID1
+        </strong>
+      </div>
+      <div class="col">
+        {{payer.eid1}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          ExternalID2
+        </strong>
+      </div>
+      <div class="col">
+        {{payer.eid2}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Propay Payer ID:
+        </strong>
+      </div>
+      <div class="col">
+        {{payer.pid}}
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="container py-3" id="payer-actions">
+  <section name="card-actions">
+    <div class="row">
+      <div class="col-lg-2 col-md-3 text-center">
+        <a class="btn btn-primary btn-sm w-100 h-100"
+          href="{% url 'propayui-payerupdate' %}">
+          Update Payer
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-3">
+        <a class="btn btn-sm btn-dark w-100 h-100"
+        href="{% url 'propayui-cardadd' %}">
+          Add Card
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-3">
+        <a class="btn btn-sm btn-danger w-100 h-100"
+          href="{% url 'propayui-payerdelete' %}">
+          Delete Payer
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="container" id="card-list">
+  <hr>
+  <h3>Card List</h3>
+  {% for card in cardlist%}
+    {% include 'propay_ui/includes/payer_details/card_info.html' %}
+  {% endfor %}
+</div>
+
+
+
+
+{% endblock content %}

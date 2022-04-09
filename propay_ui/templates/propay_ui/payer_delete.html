@@ -1,0 +1,108 @@
+{% extends 'propay_ui/base.html' %}
+{% block title %}
+Confirm Payer Deletion
+{% endblock %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container pt-3">
+  <div class="row">
+    <p class="display-3 text-center w-100">
+      Confirm Payer Deletion
+    </p>
+  </div>
+</div>
+
+{% if not message %}
+<div class="container" id="payer-details">
+  <section name="payerdetails">
+    <div class="row">
+      <h3>Payer Details</h3>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Name
+        </strong>
+      </div>
+      <div class="col">
+        {{payer.name}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          ExternalID1
+        </strong>
+      </div>
+      <div class="col">
+        {{payer.eid1}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          ExternalID2
+        </strong>
+      </div>
+      <div class="col">
+        {{payer.eid2}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Propay Payer ID:
+        </strong>
+      </div>
+      <div class="col">
+        {{payer.pid}}
+      </div>
+    </div>
+  </section>
+</div>
+{% endif %}
+
+{% if message %}
+<div class="container">
+  <div class="row">
+    <h4>Submission Message</h4>
+  </div>
+  <div class="row">
+    <h6>{{message}}</h6>
+  </div>
+</div>
+{% endif %}
+
+<div class="container">
+  <form class="card mt-5 p-5" method="post" autocomplete="false">
+    {% csrf_token %}
+    <input type="hidden" name="confirm" value="true">
+    <input type="hidden" name="payerid" value="{{payer.pid}}">
+    <div class="row">
+      <div class="col-lg-2 col-md-3 ml-auto">
+        {% if message %}
+        <a href="{% url 'propayui-payersearch' %}"
+          class="btn btn-success w-100" type="button">
+          back to payer search
+        </a>
+        {% else %}
+        <a href="{% url 'propayui-payerdetails' %}"
+          class="btn btn-success w-100" type="button">
+          cancel
+        </a>
+        {% endif %}
+      </div>
+      {% if not message %}
+      <div class="col-lg-2 col-md-3 mr-auto">
+        <button class="btn btn-danger w-100" type="submit">
+          delete
+        </button>
+      </div>
+      {% endif %}
+    </div>
+  </form>
+</div>
+
+{% endblock %}

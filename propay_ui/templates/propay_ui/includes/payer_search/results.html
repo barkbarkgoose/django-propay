@@ -1,0 +1,32 @@
+<section id="look-account-2">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Payer Account ID</th>
+        <th>Name</th>
+        <th>ExternalID1</th>
+        <th>ExternalID2</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for payer in search_results%}
+        <tr>
+          <td>{{payer.pid}}</td>
+          <td>{{payer.name}}</td>
+          <td>{{payer.eid1}}</td>
+          <td>{{payer.eid2}}</td>
+          <td>
+            <a
+            href="
+              {% url 'propayui-payerdetails' %}?{{payer.get_query_url}}"
+            class="btn btn-warning btn-sm py-1">
+              Payer Details
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</section>

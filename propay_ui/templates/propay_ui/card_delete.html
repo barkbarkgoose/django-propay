@@ -1,0 +1,167 @@
+{% extends 'propay_ui/base.html' %}
+{% block title %}
+Confirm Payer Deletion
+{% endblock %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container pt-3">
+  <div class="row">
+    <p class="display-3 text-center w-100">
+      Confirm Card Deletion
+    </p>
+  </div>
+</div>
+
+{% if not message %}
+<div class="container">
+  <section name="cardinfo">
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Payment Method ID
+        </strong>
+      </div>
+      <div class="col">
+        {{card.PaymentMethodID}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Description
+        </strong>
+      </div>
+      <div class="col">
+        {{card.Description}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Card Number
+        </strong>
+      </div>
+      <div class="col">
+        {{card.ObfuscatedAccountNumber}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Expiration
+        </strong>
+      </div>
+      <div class="col">
+        {% if card.ExpirationDate %}
+        {{card.ExpirationDate}} (MMYY)
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Card Type
+        </strong>
+      </div>
+      <div class="col">
+        {{card.PaymentMethodType}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Priority
+        </strong>
+      </div>
+      <div class="col">
+        {{card.Priority}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <strong>
+          Protected
+        </strong>
+      </div>
+      <div class="col">
+        {{card.Protected}}
+      </div>
+    </div>
+  </section>
+
+  <section name="cardinfo-billing">
+    <div class="row my-1">
+      <div class="col-3">
+        <strong>
+          Billing Information
+        </strong>
+      </div>
+      <div class="card col bg-light mx-3">
+        {% for key, val in card.BillingInformation.items %}
+          <div class="row">
+            <div class="col-4">
+              <strong>
+                {{key}}
+              </strong>
+            </div>
+            <div class="col">
+              {{val}}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</div>
+{% endif %}
+
+{% if message %}
+<div class="container">
+  <div class="row">
+    <h4>Submission Message</h4>
+  </div>
+  <div class="row">
+    <h6>{{message}}</h6>
+  </div>
+</div>
+{% endif %}
+
+<div class="container">
+  <form class="card mt-5 p-5" method="post" autocomplete="false">
+    {% csrf_token %}
+    <input type="hidden" name="confirm" value="true">
+    <input type="hidden" name="payerid" value="{{payer.pid}}">
+    <div class="row">
+      <div class="col-lg-2 col-md-3 ml-auto">
+        {% if message %}
+        <a href="{% url 'propayui-payerdetails' %}"
+          class="btn btn-success w-100" type="button">
+          back to payer details
+        </a>
+        {% else %}
+        <a href="{% url 'propayui-payerdetails' %}"
+          class="btn btn-success w-100" type="button">
+          cancel
+        </a>
+        {% endif %}
+      </div>
+      {% if not message %}
+      <div class="col-lg-2 col-md-3 mr-auto">
+        <button class="btn btn-danger w-100" type="submit">
+          delete
+        </button>
+      </div>
+      {% endif %}
+    </div>
+  </form>
+</div>
+
+{% endblock %}
