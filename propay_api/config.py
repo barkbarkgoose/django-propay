@@ -18,9 +18,9 @@ PROTECTPAY_VOID_API = 'https://api.propay.com/protectpay/VoidedTransactions/'
 from propay_api.authtokens import BILLER_ID
 from propay_api.authtokens import AUTH_TOKEN
 from propay_api.authtokens import MERCHANT_PROFILE_ID
-from propay_api.authtokens import TEST_PIN
-from propay_api.authtokens import TEST_ACCOUNT
-from propay_api.authtokens import TEST_PASSWORD
+###from propay_api.authtokens import TEST_PIN
+###from propay_api.authtokens import TEST_ACCOUNT
+###from propay_api.authtokens import TEST_PASSWORD
 from propay_api.authtokens import TEST_BILLER_ID
 from propay_api.authtokens import TEST_AUTH_TOKEN
 from propay_api.authtokens import TEST_MERCHANT_PROFILE_ID
@@ -38,11 +38,4 @@ TEST_PROTECTPAY_TRANSACTION_API = 'https://xmltestapi.propay.com/ProtectPay/Host
 TEST_PROTECTPAY_TRANSACTION_INFO = 'https://xmltestapi.propay.com/ProtectPay/HostedTransactionResults/'
 TEST_PROTECTPAY_PAYMENT_URL = 'https://xmltestapi.propay.com/ProtectPay/hpp/v2/'
 TEST_PROTECTPAY_VOID_API = 'https://xmltestapi.propay.com/ProtectPay/VoidedTransactions/'
-# TEST_PROTECTPAY_PAYMENT_URL = 'https://protectpaytest.propay.com/hpp/v2/'
 
-# --- old junk stuff ---
-# TEST_BILLER_ID = '7310599495234916'
-# TEST_AUTH_TOKEN = '2a44f9bd-d3c6-40e0-8988-7c1853e13396'
-#
-# TEST_BILLER_ID2 = '9999986379225246'
-# TEST_AUTH_TOKEN2 = '16dfe8d7-889b-4380-925f-9c2c6ea4d930'
