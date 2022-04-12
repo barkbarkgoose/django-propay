@@ -1,3 +1,4 @@
+from copy import copy
 from django.shortcuts import render, redirect  # render error pages
 from nested_lookup import nested_lookup
 from propay_api import config
@@ -220,9 +221,10 @@ def put_authorize_transaction(authoverride=None, urioverride=None, **kwargs) -> 
         'ProcessCard': False,
         'InvoiceNumber': 'Card Authorization',
     }
+    default_args_copy = copy(default_args)
 
     # --- remove default args if they're in kwargs ---
-    for key in default_args:
+    for key in default_args_copy:
         if key in kwargs:
             default_args.pop(key)
 
