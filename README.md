@@ -60,6 +60,8 @@ these might already be installed for other apps, but need to be there for the dj
 
 **django-redis-5.2.0**: needed for `propay_ui`
 
+**json2html, nested_lookup, django-phonenumber-field, phonenumbers**: all needed in `propay_ui` and `propay_ui_public`
+
 -----
 
 # urls and user login
