@@ -1,14 +1,9 @@
 # TODO
-- new app names
-	- propay_ui --> propay_ui_full
-	- propay_api --> propay_api
-	- propay_ui_public 
 
-- [ ]  split up propay_api, propay_ui and propay_ui_public into three portions
+- [ ]  finish adding in public methods to `propay_ui_public` app.
+    - [ ]  hosted transaction page
+    - [ ]  card addtion to account without other context
 
-- [ ]  change baseloader to use cdn links for everything (bootsrap) rather than local files
-
-- [ ]  copy changes back into tracked repository
 -----
 
 # about 
@@ -65,7 +60,7 @@ these might already be installed for other apps, but need to be there for the dj
 -----
 
 # urls and user login
-the propay_ui app is set up to require logged in users in order to access any of the pages.  The plan is to not need that for the public ui.  If you are only using propay_api this part can be ignored.
+the `propay_ui` app is set up to require logged in users in order to access any of the pages.  The plan is to not need that for the public ui.  If you are only using `propay_api` this part can be ignored.
 
 Include whatever method you use for user authentication.  If you don't have anything set up you can copy the following parts into your main project urls.py as needed
 
@@ -233,7 +228,7 @@ Note what is in the `LOGGING` dict in settings.py.  Make sure the named loggers 
 -----
 
 # redis
-Redis is used in the propay_ui app.  This is needed for the app to cache info to memory to minimize unnecessary repeated calls to propay.  Nothing is written to the disk and only logged in users can access any part of the UI that shows payer or card info in the first place.
+Redis is used in the `propay_ui` app.  This is needed for the app to cache info to memory to minimize unnecessary repeated calls to propay.  Nothing is written to the disk and only logged in users can access any part of the UI that shows payer or card info in the first place.
 
 ## installation
 ### Debian / Ubuntu
