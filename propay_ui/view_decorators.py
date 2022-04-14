@@ -31,19 +31,21 @@ def get_usercache_require_payer(view_func):
         # --- set up lookval in usercache ---
         if 'lookval' in usercache:
             pass
+
         else:
             usercache['lookval'] = None
 
-        # --- check for payer in usercache ---
-        if 'payer' in usercache:
-            cache.touch(cachename, timeout=60*60*24)
+        # --- see if payer can be initialized from request info first ---
+        payer = Payer.init_from_request(request)
+        if payer:
+            usercache['payer'] = payer
+            cache.set(cachename, usercache, timeout=60*60*24)
 
         else:
-            # --- see if payer can be initialized from request info ---
-            payer = Payer.init_from_request(request)
-            if payer:
-                usercache['payer'] = payer
-                cache.set(cachename, usercache, timeout=60*60*24)
+            # --- check for payer in usercache ---
+            if 'payer' in usercache:
+                cache.touch(cachename, timeout=60*60*24)
+
             else:
                 # --- payer not in cache, redirect to search page ---
                 return redirect('propayui-payersearch')
