@@ -53,9 +53,14 @@ these might already be installed for other apps, but need to be there for the dj
 	phonenumbers
 
 **django\=\=3.2**: current version is set at 3.2, other versions untested
+
 **requests**: needed for `propay_api` app
+
 **django-crispy-forms**: needed for displaying forms in `propay_ui` and `propay_ui_public`
+
 **django-redis-5.2.0**: needed for `propay_ui`
+
+**json2html, nested_lookup, django-phonenumber-field, phonenumbers**: all needed in `propay_ui` and `propay_ui_public`
 
 -----
 
