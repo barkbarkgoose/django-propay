@@ -9,6 +9,8 @@
 # about 
 django-propay is a collection of django apps meant to be added into a larger django project.  The three work independently from the rest of the project but rely on each other to an extent.  
 
+NOTE: this is built using the API provided by propay, that assumes that you will comply with the PCI-DSS through your own efforts.  If you are unsure or unable to meet PCI compliance while using this API/UI then it is best to just employ use of the ProtectPay Hosted Payment Page.  See docs here: https://www.propay.com/en-US/Developer/Processing-CC-ProtectPay
+
  `propay_ui_public` is a limited version of the ui that works on it's own when just paired with the api app. `propay_ui` uses portions of `propay_ui_public` so needs both of the other apps to be installed to work.
 
 `propay_api` works independent of the other two,  it is set up to handle http GET and POST requests to all of the calls to Propay, but thus far doesn't do anything extra to handle the security of those requests.  As is, it's fine to use on internal networks that aren't externally accessible, but would not be safe to put on a public site.  More work will be done to incorporate that later but for now everything works using direct function calls from the ui to the api.
