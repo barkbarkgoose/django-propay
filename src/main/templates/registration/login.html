@@ -1,0 +1,26 @@
+{% extends 'propay_ui_public/base.html' %}
+
+{% block title %}
+Login Here
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row percentmargvert-5">
+        <div class="col-md-4 centered">
+            <form class="form-group" action="" method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" class="btn btn-success">Login</button>
+
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 centered">
+            <p>Dont't have an account?  Contact Faxpipe support to get set up</p>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

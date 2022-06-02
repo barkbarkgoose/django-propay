@@ -93,6 +93,17 @@ you will need a login page template under your main app if not there already.
 
 -----
 
+# propay_ui `settings.py`
+
+define `API_BASE_URI` inside this file.  an example used in development would be:
+
+```python
+API_BASE_URI = 'http://jake003.aircomusa.com/propay-api/'
+```
+
+which is set to work if using the django dev server
+
+
 # project `settings.py` things
 ```python
 
@@ -207,6 +218,20 @@ LOGGING = {
 
 WSGI_APPLICATION = 'main.wsgi.application'
 
+# --- database needed if using propay_ui app ---
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'CONN_MAX_AGE': 3600000,
+        'NAME': '<dbname>',
+        'USER': '<dbuser>',
+        'PASSWORD': '<dbpass>',
+        'HOST': 'localhost',
+        'OPTIONS': {'charset': 'utf8mb4', 'sql_mode':'STRICT_TRANS_TABLES'},
+        'PORT': '',
+    }
+}
+
 # --- chache settings needed for propay_ui ---
 # --- caching with redis: https://docs.djangoproject.com/en/4.0/topics/cache/#redis ---
 CACHES = {
@@ -226,6 +251,10 @@ LOGIN_URL = 'login'
 
 ```
 
+## database
+
+note that the databse is needed at a project level for the UI to work.  The UI is currently set up to use session based authentication, though that could be changed to token based authentication if a proper DRF API is set up later.
+
 
 -----
 
@@ -243,6 +272,13 @@ Redis is used in the `propay_ui` app.  This is needed for the app to cache info 
 
 ### CentOS
 	sudo yum install redis
+
+### errors
+
+**note** that you may run into errors when trying to run redis for the first time.  If an error message similar to `Failed to start redis-server.service: Unit not found` comes up, then try the following.
+
+    sudo ln /lib/systemd/system/redis.service  /etc/systemd/system/redis-server.service
+    sudo systemctl enable redis-server 
 
 ## running
 

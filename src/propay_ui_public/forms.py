@@ -31,40 +31,34 @@ STATE_OPTIONS = [
 RE_PHONEPATTERN = "^\({0,1}\d{3}\){0,1}\s{0,1}-{0,1}\d{3}-{0,1}\d{4}$"
 
 # -------------------------- HOSTED TRANSACTION FORM ---------------------------
-class HostedTransactionForm(forms.Form):
-    PayerAccountId = forms.CharField(
-        max_length=16,
-        required=True,
-        widget=forms.HiddenInput(),
-    )
-    # --- add to form after submission ---
-    # "MerchantProfileId": config.MERCHANT_PROFILE_ID,  # ? faxpipe profile id ?
-    # --- amount should be editable
-    # "Amount": plan['propay'],
-    # "CurrencyCode": "USD",
-    # "InvoiceNumber": "Account Signup",
-    # "Comment1": plan['description'],
-    # "CardHolderNameRequirementType": 1,
-    # "SecurityCodeRequirementType": 1,
-    # "AvsRequirementType": 1,
-    # "StoreCard": True,
-    # "OnlyStoreCardOnSuccessfulProcess": False,
-    # "CssUrl": config.CSS_URL,
-    # "Address1": account.address,
-    # "Address2": '',
-    # "City": account.city,
-    # "Country": 'USA',
-    # "Description": '',
-    # "Name": account.first_name + ' ' + account.last_name,
-    # "State": account.state,
-    # "ZipCode": account.zip,
-    # "BillerIdentityId": None,
-    # "CreationDate": None,
-    # "HostedTransactionIdentifier": None,
-    # "ReturnURL": return_url,
-    # "PaymentTypeId": "0",
-    # "Protected": False
+class HostedTransactionInstanceForm(forms.Form):
+    # # --- required ---
+    #
+    # Amount
     # AuthOnly
-    # ProcessCard
+    # AvsRequirementType
+    # CardHolderNameRequirementType
+    # CurrencyCode
+    # MerchantProfileId
     # OnlyStoreCardOnSuccessfulProcess
+    # PaymentTypeId
+    # PayerId
+    # ProcessCard
+    # SecurityCodeRequirementType
+    # StoreCard
+    # ReturnUrl  # should be hidden
+    #
+    # # --- optional ---
+    # InvoiceNumber
+    # CssUrl
+    # Comment1
+    # Address1
+    # Address2
+    # City
+    # Country
+    # Description
+    # Name
+    # State
+    # ZipCode
+    # TransactionMerchantDescriptor
     pass
